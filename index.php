@@ -78,7 +78,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    DomoTIC: Tu casa en tu bolsillo
+                    DomoTIC: Su casa en su bolsillo
                 </h1>
             </div>
             <div class="col-md-4">
@@ -116,10 +116,10 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h4><em class="fa fa-users"></em> Casos prácticos</h4>
+                      <h4><em class="fa fa-users"></em> Gestione su casa</h4>
                     </div>
                     <div class="panel-body">
-                      <p align="justify">No se conforme con leer la teoría solamente. También podrá consultar los mejores casos prácticos de cada tema y su interpretación siguiendo la legislación vigente.</p>
+                      <p align="justify">Desde cualquier lugar y a cualquier hora podrá saber qué ocurre en su casa y gestionar los distintos recursos energéticos. Además, podrá consultar todo su gasto energético.</p>
                       <br><br>
                     </div>
                 </div>
@@ -127,10 +127,10 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h4><em class="fa fa-check-circle"></em> Cuestionarios, curiosidades...</h4>
+                      <h4><em class="fa fa-check-circle"></em> Controle la nevera</h4>
                     </div>
                     <div class="panel-body">
-                      <p align="justify">También podrá poner a prueba sus conocimientos acerca de cada tema mediante cuestionarios y consultar preguntas frecuentes. Además, no se pierda nuestra sección de cine. ¡Disfrute! </p>
+                      <p align="justify">Disfrute también de la última novedad de DomoTIC. Conozca a cualquier hora el estado de su nevera y realice la compra desde nuestra plataforma. </p>
                       <p>&nbsp;</p>
                     </div>
                 </div>
