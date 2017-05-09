@@ -14,14 +14,20 @@ if (isset($_POST['usuario'])){
 	}
 	if($resultado->num_rows>0){
 		if ($registro = $resultado->fetch_assoc()){
-			$_SESSION['id'] = $registro['id'];
-			$_SESSION['nombre'] = $registro['nombre'];
-			$_SESSION['email'] = $registro['email'];
+			if($registro['password']==$_POST["password"]){
+				$_SESSION['id'] = $registro['id'];
+				$_SESSION['nombre'] = $registro['nombre'];
+				$_SESSION['email'] = $registro['email'];
+				header('Location: ./miconsumo.php');
 			}
-		header('Location: ../www/redes_sociales.php');
-	} else {
-			echo "Email o clave incorrecta";
+			else {
+				echo "Clave incorrecta";
 			}
+		}
+	}
+	else{
+		echo "Email o clave incorrecta";
+	}
 										
 	// Liberamos el recurso $resultado
 		$resultado->free();

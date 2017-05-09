@@ -78,12 +78,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    DomoTIC: Su casa en su bolsillo
+                    DomoTIC: Llevamos la inteligencia a su casa
                 </h1>
             </div>
             <div class="col-md-4">
                  <div id="registrar">
-<p><b>¿No eres miembro aún? </b><a href="./php/registro.php"</a>¡Regístrate!</a>
+<p><b>¿No eres miembro aún? </b><a href="./index.php"</a>¡Regístrate!</a>
 <br><br>
 </div> <!-- fin opcion-->
  <?php 
