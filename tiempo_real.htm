@@ -50,9 +50,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-				 <li>
-                        <a href="tiempo_real.htm">En directo</a>
-                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Más gráficos <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -91,78 +88,78 @@
                 <ol class="breadcrumb">
                     <li><a href="index.php">Home</a>
                     </li>
-                    <li class="active">Redes Sociales</li>
+                    <li class="active">En directo</li>
                 </ol>
             </div>
         </div>
         <!-- /.row -->
-
-		<?php	
-		$i=0;
-		$id_usuario=$_SESSION['id'];
-		$nombre_usuario=$_SESSION['nombre'];
-		$tam="SELECT * FROM temperatura where id_usuario=$id_usuario";
-		$resultado_tam = $conexion->query($tam);//nos creamos dos arrays para almacenar el tiempo y el valor numérico
-		while ($registro_tam =  $resultado_tam->fetch_assoc ()){
-			$valoresArray[$i]=$registro_tam['Grados'];
-			$timeArray[$i]=$registro_tam['Tiempo'];
-			$i=$i+1;
-		}
-		$tam=$i
-?>
        <div id="contenedor"></div>
 
 		<script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Importo el archivo Javascript de Highcharts directamente desde su servidor -->
-<script src="http://code.highcharts.com/stock/highstock.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-<script>
+    <!-- 1. Add these JavaScript inclusions in the head of your page -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
 
-chartCPU = new Highcharts.StockChart({
-    chart: {
-        renderTo: 'contenedor'
-        //defaultSeriesType: 'spline'
+<!-- 2. Add the JavaScript to initialize the chart on document ready -->
+		<script>
+		var chart; // global
+		
+		/**
+		 * Request data from the server, add it to the graph and set a timeout to request again
+		 */
+		function requestData() {
+			$.ajax({
+				url: 'live-server-data.php', 
+				success: function(point) {
+					var series = chart.series[0],
+						shift = series.data.length > 20; // shift if the series is longer than 20
+		
+					// add the point
+					chart.series[0].addPoint(eval(point), true, shift);
+					
+					// call it again after one second
+					setTimeout(requestData, 1000);	
+				},
+				cache: false
+			});
+		}
+			
+		$(document).ready(function() {
+			chart = new Highcharts.Chart({
+				chart: {
+					renderTo: 'container',
+					defaultSeriesType: 'spline',
+					events: {
+						load: requestData
+					}
+				},
+				title: {
+					text: 'Temperatura en directo'
+				},
+				xAxis: {
+					type: 'datetime',
+					tickPixelInterval: 150,
+					maxZoom: 20 * 1000
+				},
+				yAxis: {
+					minPadding: 0.2,
+					maxPadding: 0.2,
+					title: {
+						text: 'Grados',
+						margin: 80
+					}
+				},
+				series: [{
+					name: 'Grados',
+					data: []
+				}]
+			});		
+		});
+		</script>
 
-    },
-    rangeSelector : {
-        enabled: false
-    },
-    title: {
-        text: 'Gráfica temperaturas del cliente <?php echo $nombre_usuario; ?>'
-    },
-    xAxis: {
-        type: 'number'
-        //tickPixelInterval: 150,
-        //maxZoom: 20 * 1000
-    },
-    yAxis: {
-        minPadding: 0.2,
-        maxPadding: 0.2,
-        title: {
-            text: 'Temperatura',
-            margin: 10
-        }
-    },
-    series: [{
-        name: 'valor',
-        data: (function() {
-                // generate an array of random data
-                var data = [];
-                <?php
-                    for($i = 0 ;$i<$tam;$i++){
-                ?>
-                data.push([<?php echo $timeArray[$i];?>,<?php echo $valoresArray[$i];?>]);
-                <?php } ?>
-                return data;
-            })()
-    }],
-    credits: {
-            enabled: false
-    }
-});
-
-</script>  
-        <hr>
+		<!-- 3. Add the container -->
+		<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+		
 
 
     </div>
