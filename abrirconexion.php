@@ -4,7 +4,7 @@
            $host = "localhost";
            $user = "miguelm";
            $password = "7Ujm6Yhn";
-           $database = "graficas";
+           $database = "domotic";
 
 
         // **************** ORIENTADO A OBJETOS ***************

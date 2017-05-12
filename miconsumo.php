@@ -99,13 +99,13 @@
 
 		<?php	
 		$i=0;
-		$id_usuario=$_SESSION['id'];
+		$idcliente=$_SESSION['idcliente'];
 		$nombre_usuario=$_SESSION['nombre'];
-		$tam="SELECT * FROM temperatura where id_usuario=$id_usuario";
+		$tam="SELECT id,valorDato FROM datos where (idcliente=$idcliente && tipoSensor='1')";
 		$resultado_tam = $conexion->query($tam);//nos creamos dos arrays para almacenar el tiempo y el valor numérico
 		while ($registro_tam =  $resultado_tam->fetch_assoc ()){
-			$valoresArray[$i]=$registro_tam['Grados'];
-			$timeArray[$i]=$registro_tam['Tiempo'];
+			$valoresArray[$i]=$registro_tam['valorDato'];
+			$timeArray[$i]=$registro_tam['id'];
 			$i=$i+1;
 		}
 		$tam=$i
