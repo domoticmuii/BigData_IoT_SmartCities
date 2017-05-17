@@ -1,10 +1,10 @@
 <?php
 
 // Definimos los parámetros
-           $host = "localhost";
-           $user = "miguelm";
-           $password = "7Ujm6Yhn";
-           $database = "domotic";
+           $host = "10.0.0.4";
+           $user = "root";
+           $password = "patata06";
+           $database = "Domotic";
 
 
         // **************** ORIENTADO A OBJETOS ***************

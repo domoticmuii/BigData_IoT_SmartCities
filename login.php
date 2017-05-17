@@ -1,8 +1,6 @@
 <?php
-
+session_start();
 include 'abrirconexion.php';
-
-										
 if (isset($_POST['usuario'])){
 	$email = $_POST["usuario"];
 	$password = $_POST["password"];
@@ -20,7 +18,7 @@ if (isset($_POST['usuario'])){
 				$_SESSION['apellidos'] = $registro['apellidos'];
 				$_SESSION['email'] = $registro['email'];
 				$_SESSION['direccion'] = $registro['direccion'];
-				header('Location: ./miconsumo.php');
+				header('Location: miconsumo.php');
 			}
 			else {
 				echo "Clave incorrecta";
@@ -30,8 +28,7 @@ if (isset($_POST['usuario'])){
 	else{
 		echo "Email o clave incorrecta";
 	}
-										
 	// Liberamos el recurso $resultado
 		$resultado->free();
-} 
+}
 ?>

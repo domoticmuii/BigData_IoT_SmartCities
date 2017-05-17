@@ -1,9 +1,22 @@
+<?php
+                include 'abrirconexion.php';
+                session_start();
+                $i=0;
+                $idcliente=$_SESSION['idcliente'];
+                $nombre_usuario=$_SESSION['nombre'];
+                $tam="SELECT id,valorDatos FROM datos where (idcliente='$idcliente' && tipoSensor='Temperatura')";
+                $resultado_tam = $conexion->query($tam);//nos creamos dos arrays para almacenar el tiempo y el valor numérico
+                while ($registro_tam =  $resultado_tam->fetch_assoc ()){
+                        $valoresArray[$i]=floatval($registro_tam['valorDatos']);
+			$timeArray[$i]=$registro_tam['id'];
+                        $i=$i+1;
+                }
+                $tam=$i
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-<?php
-		include 'abrirconexion.php';
-		session_start();
-	?>
 <head>
 
     <meta charset="utf-8">
@@ -91,33 +104,21 @@
                 <ol class="breadcrumb">
                     <li><a href="index.php">Home</a>
                     </li>
-                    <li class="active">Redes Sociales</li>
+                    <li class="active">Mi consumo</li>
                 </ol>
             </div>
         </div>
         <!-- /.row -->
 
-		<?php	
-		$i=0;
-		$idcliente=$_SESSION['idcliente'];
-		$nombre_usuario=$_SESSION['nombre'];
-		$tam="SELECT id,valorDato FROM datos where (idcliente=$idcliente && tipoSensor='1')";
-		$resultado_tam = $conexion->query($tam);//nos creamos dos arrays para almacenar el tiempo y el valor numérico
-		while ($registro_tam =  $resultado_tam->fetch_assoc ()){
-			$valoresArray[$i]=$registro_tam['valorDato'];
-			$timeArray[$i]=$registro_tam['id'];
-			$i=$i+1;
-		}
-		$tam=$i
-?>
-       <div id="contenedor"></div>
 
-		<script src="https://code.jquery.com/jquery.js"></script>
+
+<script src="https://code.jquery.com/jquery.js"></script>
     <!-- Importo el archivo Javascript de Highcharts directamente desde su servidor -->
 <script src="http://code.highcharts.com/stock/highstock.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
-<script>
 
+<div id="contenedor"></div>
+<script>
 chartCPU = new Highcharts.StockChart({
     chart: {
         renderTo: 'contenedor'
@@ -162,7 +163,8 @@ chartCPU = new Highcharts.StockChart({
 });
 
 </script>  
-        <hr>
+
+<div id="contenedor" style="width: 800px; height: 400px; margin: 0 auto"></div>
 
 
     </div>

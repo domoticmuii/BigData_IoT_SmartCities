@@ -1,9 +1,9 @@
+<?php 
+        include 'abrirconexion.php';
+        session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
-	include 'abrirconexion.php';
-	session_start();
-?>
 <head>
 	<meta http-equiv="Content-type"
 	content="text/html; charset=utf-8" />
@@ -46,12 +46,33 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                   
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Más gráficos <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        <?php $i=0; ?>
+                            <li>
+                                <a href="miconsumo.php">Temperatura</a>
+                            </li>
+                            <li>
+                                <a href="#">Electricidad</a>
+                            </li>
+                            <li>
+                               <a href="#">Agua y jardín</a>
+                            </li>
+                                                        <li>
+                               <a href="#">Calefacción y gas</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Mi perfil</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
+
     </nav>
 
     <!-- Header Carousel -->
@@ -63,7 +84,6 @@
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-            <?php $i=0; ?>
             <div class="item active">
                 <div class="fill" style="background-image:url('imagenes/slide_domotica4.jpg');"></div></a>
                 <div class="carousel-caption">
@@ -87,18 +107,18 @@
 <br><br>
 </div> <!-- fin opcion-->
  <?php 
-										if(isset($_SESSION['email'])){
-											echo 'Bienvenido '.$_SESSION['nombre'];
-									?>
-										<br></br>
-										<a href="cerrarsesion.php"> <u>SALIR</u> </a>
-										<?php }
-										else{ ?>	
+	if(isset($_SESSION['email'])){
+		echo 'Bienvenido '.$_SESSION['nombre'];
+	?>
+	<br></br>
+	<a href="cerrarsesion.php"> <u>SALIR</u> </a>
+	<?php }
+	else{ ?>
     <div id="envoltura">
         <div id="contenedor">
  
             <div id="cuerpo">
-                <form id="form-login" action="index.php" method="post" autocomplete="on">
+                <form id="form-login" action="login.php" method="post" autocomplete="on">
                     <p><label >Usuario:</label>
                         <input name="usuario" type="text" id="usuario" placeholder="Ingresa Usuario" required="required">
 					</p>
@@ -111,7 +131,7 @@
         </div><!-- fin contenedor -->
     </div><!--fin envoltura-->
 	<?php }
-	include "login.php"; ?>
+	 ?>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -143,7 +163,6 @@
             <div class="col-lg-12">
               <h2 class="page-header">Índice</h2>
             </div>
-            <?php $i=0; ?>
             <div class="col-sm-4 col-xs-6">               
                     <img class="img-responsive img-portfolio img-hover" src="imagenes/big_data.png" alt="">
                 </a>
